@@ -2,6 +2,7 @@ spring:
   application:
     name: payment-service
 
+
   datasource:
     url: jdbc:postgresql://localhost:5432/vivaeventos_payments
     username: postgres
@@ -17,7 +18,7 @@ spring:
     host: localhost
     port: 5672
     username: vivaeventos
-    password: tu_password
+    password: vivaeventos123
     virtual-host: vivaeventos
 
 server:
