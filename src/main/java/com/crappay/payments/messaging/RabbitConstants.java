@@ -11,6 +11,12 @@ public class RabbitConstants {
     public static final String PAYMENT_REJECTED_ROUTING_KEY =
             "payment.rejected";
 
+    public static final String PAYMENT_APPROVED_QUEUE =
+            "payment.approved.queue";
+
+    public static final String PAYMENT_REJECTED_QUEUE =
+            "payment.rejected.queue";
+
     private RabbitConstants() {
     }
 }

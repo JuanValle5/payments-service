@@ -9,6 +9,7 @@ import com.crappay.payments.dto.PaymentRequest;
 import com.crappay.payments.model.Payment;
 import com.crappay.payments.model.PaymentStatus;
 import com.crappay.payments.repository.PaymentRepository;
+import com.crappay.payments.service.PaymentService;
 import org.springframework.web.bind.annotation.*;
 
 import com.mercadopago.resources.preference.Preference;
@@ -19,10 +20,12 @@ public class PaymentController {
 
     private final MercadoPagoService mercadoPagoService;
     private final PaymentRepository paymentRepository;
+    private final PaymentService paymentService;
 
-    public PaymentController(MercadoPagoService mercadoPagoService, PaymentRepository paymentRepository) {
+    public PaymentController(MercadoPagoService mercadoPagoService, PaymentRepository paymentRepository, PaymentService paymentService) {
         this.mercadoPagoService = mercadoPagoService;
         this.paymentRepository = paymentRepository;
+        this.paymentService = paymentService;
     }
 
     @PostMapping("/initiate")
@@ -63,5 +66,25 @@ public class PaymentController {
                         paymentReference
                 )
                 .orElseThrow();
+    }
+
+    @PostMapping("/webhook/test/approved/{paymentReference}")
+    public Payment approvePayment(
+            @PathVariable String paymentReference
+    ) {
+
+        return paymentService.approvePayment(
+                paymentReference
+        );
+    }
+
+    @PostMapping("/webhook/test/rejected/{paymentReference}")
+    public Payment rejectPayment(
+            @PathVariable String paymentReference
+    ) {
+
+        return paymentService.rejectPayment(
+                paymentReference
+        );
     }
 }
