@@ -1,4 +1,4 @@
-package com.crappay.payments;
+package com.crappay.payments.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

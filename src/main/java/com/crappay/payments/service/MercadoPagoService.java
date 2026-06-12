@@ -1,7 +1,8 @@
-package com.crappay.payments;
+package com.crappay.payments.service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -25,9 +26,9 @@ public class MercadoPagoService {
         MercadoPagoConfig.setAccessToken(accessToken);
     }
 
-    public Preference createPreference(String orderId, Double totalAmount, String description, String paymentReference) throws Exception {
+    public Preference createPreference(UUID orderId, Double totalAmount, String description, String paymentReference) throws Exception {
         PreferenceItemRequest item = PreferenceItemRequest.builder()
-            .id(orderId)
+            .id(orderId.toString())
             .title(description)
             .quantity(1)
             .unitPrice(BigDecimal.valueOf(totalAmount))
